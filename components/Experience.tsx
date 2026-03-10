@@ -4,10 +4,10 @@ import { useRef } from "react";
 
 const jobs = [
   {
-    date: "Dec 2025 – Present",
+    date: "Dec 2025 – Feb 2026",
     company: "PEI Group · Expian Technologies, Bangalore",
     role: "Senior MS Dynamics 365 CRM Developer",
-    current: true,
+    current: false,
     bullets: [
       "Built C# plugins and Azure Functions to automate subscriber management across PEI's portfolio of specialist finance brands",
       "Designed and maintained CI/CD pipelines using Azure DevOps and Power Platform Build Tools for automated D365 deployments",

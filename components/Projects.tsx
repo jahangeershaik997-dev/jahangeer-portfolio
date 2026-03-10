@@ -28,7 +28,7 @@ const projects = [
     challenge: "Implement Income Statements for MSCI Emerging Markets used by Morgan Stanley's global equity index teams.",
     solution: "MS CRM 2016 customisations with C# plugins for financial calculation workflows, SSRS reports for BI output.",
     impact: "Global equity index data · Finance-grade accuracy · Multi-currency",
-    impactNum: "$50T+", impactLabel: "index AUM tracked",
+    impactNum: "Global", impactLabel: "Equity Index CRM",
     tags: ["MS CRM 2016", "JavaScript", "C# Plugins", "Workflows", "SSRS"],
     accent: "#7c3aed",
     responsibilities: [

@@ -113,7 +113,7 @@ export default function Hero() {
           style={{ marginBottom: "2rem" }}
         >
           <div style={{ fontSize: "0.68rem", color: "#9ca3af", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
-            Trusted by
+            Enterprise Clients Served
           </div>
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             {["MSCI", "Unilever", "Walmart", "PEI Group"].map((c) => (

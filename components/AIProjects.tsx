@@ -36,7 +36,7 @@ const otherProjects = [
     accent: "#7c3aed",
   },
   {
-    tag: "Open Source Tool · Python",
+    tag: "Side Project · Python",
     tagColor: "#0891b2",
     name: "crm_agent — AI CLI Tool for D365 Developers",
     what: "A Python CLI that searches your D365 codebase, reads files safely, detects plugin/flow/Azure Function patterns, and generates implementation plans from Jira stories — replacing manual analysis.",
@@ -251,7 +251,7 @@ export default function AIProjects() {
               }}
             >
               <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", display: "inline-block" }} />
-              Currently Building
+              In Development · Private Repo
             </motion.span>
             <span style={{
               background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.5)",

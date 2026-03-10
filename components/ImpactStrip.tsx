@@ -10,7 +10,7 @@ const stats = [
 ];
 
 function AnimatedNum({ n, suffix, inView }: { n: number; suffix: string; inView: boolean }) {
-  const [val, setVal] = useState(0);
+  const [val, setVal] = useState(n);
   const started = useRef(false);
 
   useEffect(() => {
