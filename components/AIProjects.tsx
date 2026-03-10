@@ -17,14 +17,6 @@ const aiTools = [
 ];
 
 // ── Projects data ─────────────────────────────────────────────────────────────
-const ripPhases = [
-  { phase: "0", name: "Environment & Foundations", weeks: "Week 1", done: true },
-  { phase: "1", name: "CRM Core + Database", weeks: "Weeks 2–3", done: false },
-  { phase: "2", name: "Data Pipeline + Analytics", weeks: "Weeks 4–5", done: false },
-  { phase: "3", name: "Dashboards + AI Layer", weeks: "Weeks 6–7", done: false },
-  { phase: "4", name: "D365 Implementation", weeks: "Weeks 8–9", done: false },
-];
-
 const ripStack = [
   "D365 / Dataverse", "C# Plugins (.NET 4.6.2)", "Azure Functions (.NET 8)",
   "Azure OpenAI GPT-4o", "Node.js + Express", "Next.js + React",
@@ -265,7 +257,7 @@ export default function AIProjects() {
               background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.5)",
               padding: "0.3rem 0.85rem", borderRadius: "100px",
               fontSize: "0.72rem", fontWeight: 500,
-            }}>RIP-2026 · 10 Weeks · Agile Scrum</span>
+            }}>RIP-2026</span>
           </div>
           <span style={{
             fontSize: "0.72rem", color: "rgba(255,255,255,0.3)",
@@ -287,73 +279,32 @@ export default function AIProjects() {
           Full-stack CRM + Data Analytics + AI platform — production-grade, corporate Agile delivery from scratch
         </div>
 
-        {/* Two-col layout */}
-        <div style={{
-          display: "grid", gridTemplateColumns: "1fr 1fr",
-          gap: "2rem",
-        }} className="rip-grid">
+        {/* What I'm Building */}
+        <div>
+          <div style={{
+            fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.1em",
+            textTransform: "uppercase", color: "#f5a623", marginBottom: "0.85rem",
+          }}>What I&apos;m Building</div>
 
-          {/* Left: What I'm building */}
-          <div>
-            <div style={{
-              fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.1em",
-              textTransform: "uppercase", color: "#f5a623", marginBottom: "0.85rem",
-            }}>My Role (CRM Developer)</div>
-
-            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-              {[
-                "C# Plugins for D365 Lead & Opportunity automation",
-                "Azure Functions (.NET 8) + Azure OpenAI GPT-4o scoring",
-                "Node.js + Express REST API for CRM operations",
-                "Next.js + React frontend with Tailwind CSS",
-                "PostgreSQL + Prisma ORM data layer",
-                "Power Automate flows for async CRM orchestration",
-                "Docker local dev + GitHub CI/CD pipeline",
-              ].map((b) => (
-                <li key={b} style={{
-                  fontSize: "0.82rem", color: "rgba(255,255,255,0.65)",
-                  paddingLeft: "1.2rem", position: "relative",
-                }}>
-                  <span style={{ position: "absolute", left: 0, color: "#1a6cf5", fontSize: "0.7rem" }}>▸</span>
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Right: Phases */}
-          <div>
-            <div style={{
-              fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.1em",
-              textTransform: "uppercase", color: "#f5a623", marginBottom: "0.85rem",
-            }}>Delivery Phases</div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-              {ripPhases.map((p) => (
-                <div key={p.phase} style={{
-                  display: "flex", alignItems: "center", gap: "0.75rem",
-                  padding: "0.5rem 0.85rem", borderRadius: "8px",
-                  background: p.done ? "rgba(34,197,94,0.1)" : "rgba(255,255,255,0.04)",
-                  border: `1px solid ${p.done ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.06)"}`,
-                }}>
-                  <span style={{
-                    width: 20, height: 20, borderRadius: "50%",
-                    background: p.done ? "#22c55e" : "rgba(255,255,255,0.1)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: "0.6rem", fontWeight: 700,
-                    color: p.done ? "white" : "rgba(255,255,255,0.4)",
-                    flexShrink: 0,
-                  }}>{p.done ? "✓" : p.phase}</span>
-                  <div>
-                    <div style={{ fontSize: "0.78rem", color: p.done ? "#4ade80" : "rgba(255,255,255,0.75)", fontWeight: 500 }}>
-                      {p.name}
-                    </div>
-                    <div style={{ fontSize: "0.62rem", color: "rgba(255,255,255,0.3)" }}>{p.weeks}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+            {[
+              "C# Plugins for D365 Lead & Opportunity automation",
+              "Azure Functions (.NET 8) + Azure OpenAI GPT-4o scoring",
+              "Node.js + Express REST API for CRM operations",
+              "Next.js + React frontend with Tailwind CSS",
+              "PostgreSQL + Prisma ORM data layer",
+              "Power Automate flows for async CRM orchestration",
+              "Docker local dev + GitHub CI/CD pipeline",
+            ].map((b) => (
+              <li key={b} style={{
+                fontSize: "0.82rem", color: "rgba(255,255,255,0.65)",
+                paddingLeft: "1.2rem", position: "relative",
+              }}>
+                <span style={{ position: "absolute", left: 0, color: "#1a6cf5", fontSize: "0.7rem" }}>▸</span>
+                {b}
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Tech stack */}
@@ -451,7 +402,6 @@ export default function AIProjects() {
       <style>{`
         @media (max-width: 768px) {
           #ai { padding: 4rem 1.5rem !important; }
-          .rip-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
         }
       `}</style>
     </section>
