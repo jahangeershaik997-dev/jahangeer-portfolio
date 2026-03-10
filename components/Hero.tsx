@@ -157,6 +157,21 @@ export default function Hero() {
           >
             Get in Touch
           </a>
+          <a href="/Shaik_Jahangeer_Resume.pdf" download style={{
+            display: "inline-flex", alignItems: "center", gap: "0.5rem",
+            padding: "0.9rem 1.8rem", borderRadius: "8px",
+            background: "#1a6cf5", color: "white",
+            fontFamily: "DM Sans, sans-serif", fontWeight: 500, fontSize: "0.95rem",
+            textDecoration: "none", transition: "all 0.25s",
+          }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "#0d4fc9"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "#1a6cf5"; e.currentTarget.style.transform = "translateY(0)"; }}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download CV
+          </a>
         </motion.div>
       </motion.div>
 
