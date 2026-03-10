@@ -7,7 +7,7 @@ const stats = [
   { icon: "⚡", bg: "#dbeafe", num: "7", label: "Years IT Experience" },
   { icon: "🏗️", bg: "#fef3c7", num: "6", label: "Years Dynamics 365 / CRM" },
   { icon: "🚀", bg: "#d1fae5", num: "5+", label: "Enterprise Projects" },
-  { icon: "☁️", bg: "#ede9fe", num: "Azure", label: "Functions · DevOps · CI/CD" },
+  { icon: "☁️", bg: "#ede9fe", num: "4+", label: "Years Azure · Functions · DevOps" },
 ];
 
 function Counter({ target }: { target: string }) {
