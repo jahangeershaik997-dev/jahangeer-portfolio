@@ -84,7 +84,7 @@ export default function Contact() {
             ✉ jahangeershaik997@gmail.com
           </a>
 
-          <a href="tel:+919059314625" style={{
+          <a href="tel:+919059234625" style={{
             display: "inline-flex", alignItems: "center", gap: "0.6rem",
             padding: "0.95rem 1.9rem", borderRadius: "8px",
             background: "rgba(255,255,255,0.1)", color: "white",
@@ -95,7 +95,7 @@ export default function Contact() {
             onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.18)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.1)"; e.currentTarget.style.transform = "translateY(0)"; }}
           >
-            📞 +91 90593 14625
+            📞 +91 90592 34625
           </a>
         </motion.div>
 
