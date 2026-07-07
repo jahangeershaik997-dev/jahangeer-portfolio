@@ -14,10 +14,13 @@ const jobs = [
       "Integrated Power Automate flows for subscriber onboarding, renewals, and cross-brand data synchronisation",
       "Provided technical leadership and mentorship to junior developers in an Agile (Scrum) environment",
     ],
+    projects: [
+      "PEI Group - Subscriber Intelligence & CRM Platform",
+    ],
   },
   {
     date: "Feb 2019 – Nov 2025",
-    company: "Starlite Infotech Ltd, Hyderabad",
+    company: "Starlite Infotech Ltd, Remote",
     role: "Senior MS Dynamics CRM Developer",
     current: false,
     bullets: [
@@ -25,6 +28,12 @@ const jobs = [
       "Developed plugins, JavaScript customisations, workflows, and SSRS reports across multiple D365 implementations",
       "Led entity, form, relationship, and security role configuration across several large-scale CRM projects",
       "Performed end-to-end solution import/export, sandbox-to-production deployments, and ribbon customisations",
+    ],
+    projects: [
+      "MSCI Budgeting & Forecasting System",
+      "Walmart Health & Wellness Pharmacy CRM",
+      "Unilever OPSO HD & PPM Portfolio Tool",
+      "SIS K-12 School Information System",
     ],
   },
 ];
@@ -71,7 +80,7 @@ function ExpItem({ job, index }: { job: typeof jobs[0]; index: number }) {
         fontWeight: 700, letterSpacing: "-0.01em", marginBottom: "0.85rem",
       }}>{job.role}</div>
 
-      <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.45rem" }}>
+      <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.45rem", marginBottom: "1rem" }}>
         {job.bullets.map((b, i) => (
           <motion.li
             key={i}
@@ -91,6 +100,36 @@ function ExpItem({ job, index }: { job: typeof jobs[0]; index: number }) {
           </motion.li>
         ))}
       </ul>
+
+      {job.projects && job.projects.length > 0 && (
+        <div style={{ marginTop: "1rem", paddingTop: "1rem", borderTop: "1px solid #e5e7eb" }}>
+          <div style={{
+            fontSize: "0.75rem", fontWeight: 700, color: "#1a6cf5",
+            textTransform: "uppercase", letterSpacing: "0.08em",
+            marginBottom: "0.5rem",
+          }}>Projects</div>
+          <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.35rem" }}>
+            {job.projects.map((p, i) => (
+              <motion.li
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: index * 0.15 + job.bullets.length * 0.06 + i * 0.06 + 0.35 }}
+                style={{
+                  fontSize: "0.85rem", color: "#374151",
+                  paddingLeft: "1.35rem", position: "relative", fontWeight: 500,
+                }}
+              >
+                <span style={{
+                  position: "absolute", left: 0, color: "#059669",
+                  fontSize: "0.72rem", top: "0.12rem",
+                }}>◆</span>
+                {p}
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+      )}
     </motion.div>
   );
 }
