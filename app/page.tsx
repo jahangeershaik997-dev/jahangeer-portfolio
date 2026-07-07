@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import ImpactStrip from "@/components/ImpactStrip";
 import Skills from "@/components/Skills";
 import Ecosystem from "@/components/Ecosystem";
-import AIProjects from "@/components/AIProjects";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
@@ -19,7 +18,6 @@ export default function Home() {
       <ImpactStrip />
       <Skills />
       <Ecosystem />
-      <AIProjects />
       <Experience />
       <Projects />
       <Contact />
