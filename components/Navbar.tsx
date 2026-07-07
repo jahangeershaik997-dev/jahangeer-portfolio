@@ -91,7 +91,7 @@ export default function Navbar() {
             onMouseLeave={(e) => (e.currentTarget.style.color = "#6b7280")}
           >{s.icon}</a>
         ))}
-        <a href="/Shaik_Jahangeer_Resume.pdf" download style={{
+        <a href="/CRM_dev_shaik_jahangeer_7_exp.pdf" download style={{
           padding: "0.55rem 1.25rem",
           background: "#0d1117", color: "white",
           borderRadius: "6px", fontWeight: 500, fontSize: "0.875rem",
