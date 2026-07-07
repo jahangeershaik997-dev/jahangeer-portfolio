@@ -157,7 +157,7 @@ export default function Hero() {
           >
             Get in Touch
           </a>
-          <a href="/Shaik_Jahangeer_Resume.pdf" download style={{
+          <a href="/CRM_dev_shaik_jahangeer_7_exp.pdf" download style={{
             display: "inline-flex", alignItems: "center", gap: "0.5rem",
             padding: "0.9rem 1.8rem", borderRadius: "8px",
             background: "#1a6cf5", color: "white",
