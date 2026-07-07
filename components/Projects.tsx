@@ -6,6 +6,7 @@ const projects = [
   {
     num: "01",
     name: "PEI Group — Subscriber Intelligence & CRM Platform",
+    duration: "Dec 2025 – Mar 2026",
     challenge: "Automate subscriber lifecycle management across 8 specialist finance brands with zero cross-brand data contamination.",
     solution: "C# plugins + Azure Functions pipeline with Power Automate flows for onboarding, renewals, and cross-brand sync. CI/CD via Azure DevOps.",
     impact: "8 brands · CI/CD automated deployments · Zero manual subscriber ops",
@@ -25,6 +26,7 @@ const projects = [
   {
     num: "02",
     name: "MSCI — Budgeting & Forecasting CRM",
+    duration: "Feb 2019 – Mar 2020",
     challenge: "Implement Income Statements for MSCI Emerging Markets used by Morgan Stanley's global equity index teams.",
     solution: "MS CRM 2016 customisations with C# plugins for financial calculation workflows, SSRS reports for BI output.",
     impact: "Global equity index data · Finance-grade accuracy · Multi-currency",
@@ -43,6 +45,7 @@ const projects = [
   {
     num: "03",
     name: "Walmart US — Health & Wellness Pharmacy CRM",
+    duration: "Apr 2020 – Aug 2021",
     challenge: "Manage end-to-end pharmacy order flow — patient registration to drug counselling — across thousands of US stores.",
     solution: "D365 Cloud CRM with custom plugins handling drug dispensing logic, prescription tracking, and compliance reporting.",
     impact: "US-wide pharmacy chain · Patient safety compliance · 24/7 uptime",
@@ -61,6 +64,7 @@ const projects = [
   {
     num: "04",
     name: "Unilever — OPSO HD & PPM Tool",
+    duration: "Sep 2021 – Dec 2022",
     challenge: "Unify global product portfolio management for Unilever brand teams across multiple continents and product lines.",
     solution: "CRM D365 with WebAPI integrations, FetchXML-powered dashboards, stored procedures, and plugin-driven automation.",
     impact: "Global FMCG operations · Multi-continent teams · Real-time portfolio data",
@@ -80,6 +84,7 @@ const projects = [
   {
     num: "05",
     name: "SIS K-12 — School Information System",
+    duration: "Jan 2023 – Nov 2025",
     challenge: "Build a CRM product for global school management including student lifecycle from registration to graduation.",
     solution: "D365 with Portals for parent/student access, Power Apps for mobile use, custom plugins for attendance and fee automation.",
     impact: "Global school network · Student portal · Fee automation",
@@ -156,6 +161,12 @@ function Modal({ p, onClose }: { p: typeof projects[0]; onClose: () => void }) {
             marginBottom: "0.5rem", lineHeight: 1.3,
             paddingRight: "2rem",
           }}>{p.name}</div>
+
+          {/* Duration */}
+          <div style={{
+            fontSize: "0.75rem", color: "#6b7280", fontWeight: 500,
+            marginBottom: "1rem",
+          }}>📅 {p.duration}</div>
 
           {/* Impact badge */}
           <div style={{
@@ -279,6 +290,11 @@ function ProjectCard({ p, index }: { p: typeof projects[0]; index: number }) {
           fontFamily: "Syne, sans-serif", fontSize: "1.05rem",
           fontWeight: 700, letterSpacing: "-0.01em", lineHeight: 1.35, color: "#0d1117",
         }}>{p.name}</div>
+
+        {/* Duration */}
+        <div style={{
+          fontSize: "0.75rem", color: "#6b7280", fontWeight: 500,
+        }}>📅 {p.duration}</div>
 
         {/* Challenge / Solution */}
         <div>
