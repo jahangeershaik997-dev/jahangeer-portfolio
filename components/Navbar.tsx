@@ -1,157 +1,170 @@
 "use client";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-
-const links = ["Skills", "AI", "Projects", "Experience", "Contact"];
-
-const socials = [
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/jahangeer-shaik-3537422b4",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-      </svg>
-    ),
-  },
-];
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { navLinks, RESUME_PATH } from "@/lib/content";
+import { DownloadIcon } from "./ui/Icons";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("#home");
+  const reduce = useReducedMotion();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Active section tracking
+  useEffect(() => {
+    const ids = navLinks.map((l) => l.href.slice(1));
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(`#${visible.target.id}`);
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.2, 0.5] },
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
+  // Close mobile menu on resize to desktop and lock scroll while open
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onResize = () => window.innerWidth >= 1024 && setOpen(false);
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [open]);
+
   return (
-    <motion.nav
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      style={{
-        position: "fixed", top: 0, left: 0, right: 0,
-        zIndex: 100,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "1rem 4rem",
-        background: scrolled ? "rgba(245,243,238,0.92)" : "transparent",
-        backdropFilter: scrolled ? "blur(16px)" : "none",
-        borderBottom: scrolled ? "1px solid #d8d3c8" : "1px solid transparent",
-        transition: "all 0.4s ease",
-      }}
+    <header
+      className={`fixed inset-x-0 top-0 z-[100] transition-[background-color,border-color,box-shadow] duration-300 ${
+        scrolled || open
+          ? "border-b border-line bg-white/85 shadow-[0_1px_0_rgba(11,21,38,0.02)] backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
+      }`}
     >
-      <a href="#home" style={{
-        fontFamily: "Syne, sans-serif", fontWeight: 800,
-        fontSize: "1.1rem", letterSpacing: "-0.02em",
-        color: "#0d1117", textDecoration: "none",
-      }}>
-        SJ.
-      </a>
-
-      {/* Desktop links */}
-      <ul style={{ display: "flex", gap: "2rem", listStyle: "none" }}
-          className="hidden-mobile">
-        {links.map((l) => (
-          <li key={l}>
-            <a href={`#${l.toLowerCase()}`} style={{
-              fontSize: "0.875rem", fontWeight: 500,
-              color: "#6b7280", textDecoration: "none",
-              transition: "color 0.2s",
-            }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#0d1117")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#6b7280")}
-            >{l}</a>
-          </li>
-        ))}
-      </ul>
-
-      {/* Social icons */}
-      <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }} className="hidden-mobile">
-        {socials.map((s) => (
-          <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
-            title={s.label}
-            style={{
-              color: "#6b7280", transition: "color 0.2s",
-              display: "flex", alignItems: "center",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#0d1117")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "#6b7280")}
-          >{s.icon}</a>
-        ))}
-        <a href="/CRM_dev_shaik_jahangeer_7_exp.pdf" download style={{
-          padding: "0.55rem 1.25rem",
-          background: "#0d1117", color: "white",
-          borderRadius: "6px", fontWeight: 500, fontSize: "0.875rem",
-          textDecoration: "none", transition: "all 0.2s",
-          display: "flex", alignItems: "center", gap: "0.4rem",
-        }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#1a6cf5")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "#0d1117")}
-        >
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-          Resume
+      <nav aria-label="Primary" className="container-x flex h-16 items-center justify-between gap-4 md:h-[4.5rem]">
+        <a href="#home" className="flex items-center gap-2.5 no-underline" aria-label="Shaik Jahangeer, back to top">
+          <span className="grid h-8 w-8 place-items-center rounded-lg bg-ink font-mono text-[0.7rem] font-semibold tracking-tight text-white">
+            SJ
+          </span>
+          <span className="hidden text-sm font-semibold text-ink sm:block">Shaik Jahangeer</span>
         </a>
-      </div>
 
-      {/* Mobile hamburger */}
-      <button onClick={() => setMenuOpen(!menuOpen)}
-        className="show-mobile"
-        style={{ background: "none", border: "none", cursor: "pointer",
-          display: "flex", flexDirection: "column", gap: "5px", padding: "4px" }}>
-        {[0,1,2].map(i => (
-          <span key={i} style={{
-            display: "block", width: "22px", height: "2px",
-            background: "#0d1117", borderRadius: "2px",
-            transition: "all 0.3s",
-          }} />
-        ))}
-      </button>
+        <ul className="hidden items-center gap-1 lg:flex">
+          {navLinks.map((l) => {
+            const isActive = active === l.href;
+            return (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  aria-current={isActive ? "location" : undefined}
+                  className={`relative rounded-md px-3 py-2 text-[0.85rem] font-medium no-underline transition-colors ${
+                    isActive ? "text-ink" : "text-muted hover:text-ink"
+                  }`}
+                >
+                  {l.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-active"
+                      transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 380, damping: 32 }}
+                      className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-azure"
+                      aria-hidden="true"
+                    />
+                  )}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+
+        <div className="flex items-center gap-2">
+          <a href={RESUME_PATH} download className="btn btn-dark hidden !px-4 !py-2.5 text-[0.82rem] sm:inline-flex">
+            <DownloadIcon size={14} />
+            Resume
+          </a>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+            className="grid h-10 w-10 place-items-center rounded-lg border border-line bg-white text-ink lg:hidden"
+          >
+            <span className="relative block h-3.5 w-5" aria-hidden="true">
+              <span
+                className={`absolute left-0 h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ${
+                  open ? "top-1.5 rotate-45" : "top-0"
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-1.5 h-0.5 w-5 rounded-full bg-current transition-opacity duration-200 ${
+                  open ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`absolute left-0 h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ${
+                  open ? "top-1.5 -rotate-45" : "top-3"
+                }`}
+              />
+            </span>
+          </button>
+        </div>
+      </nav>
 
       <AnimatePresence>
-        {menuOpen && (
+        {open && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            id="mobile-menu"
+            initial={reduce ? false : { opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            style={{
-              position: "fixed", top: "60px", left: 0, right: 0,
-              background: "rgba(245,243,238,0.97)",
-              backdropFilter: "blur(16px)",
-              padding: "1.5rem 2rem",
-              borderBottom: "1px solid #d8d3c8",
-              display: "flex", flexDirection: "column", gap: "1rem",
-            }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="border-t border-line bg-white lg:hidden"
           >
-            {links.map((l) => (
-              <a key={l} href={`#${l.toLowerCase()}`}
-                onClick={() => setMenuOpen(false)}
-                style={{
-                  fontFamily: "Syne, sans-serif", fontWeight: 600,
-                  fontSize: "1.1rem", color: "#0d1117", textDecoration: "none",
-                }}>
-                {l}
-              </a>
-            ))}
+            <ul className="container-x flex max-h-[calc(100dvh-4rem)] flex-col overflow-y-auto py-3">
+              {navLinks.map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    aria-current={active === l.href ? "location" : undefined}
+                    className={`flex items-center justify-between rounded-lg px-3 py-3 text-base font-medium no-underline ${
+                      active === l.href ? "bg-azure-soft text-azure-deep" : "text-ink hover:bg-surface"
+                    }`}
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+              <li className="mt-2 border-t border-line pt-3 sm:hidden">
+                <a href={RESUME_PATH} download onClick={() => setOpen(false)} className="btn btn-dark w-full">
+                  <DownloadIcon size={14} />
+                  Download Resume
+                </a>
+              </li>
+            </ul>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .hidden-mobile { display: none !important; }
-        }
-        @media (min-width: 769px) {
-          .show-mobile { display: none !important; }
-        }
-        nav { padding: 1rem 4rem; }
-        @media (max-width: 768px) { nav { padding: 1rem 1.5rem !important; } }
-      `}</style>
-    </motion.nav>
+    </header>
   );
 }
