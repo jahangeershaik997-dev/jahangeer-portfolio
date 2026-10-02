@@ -155,6 +155,22 @@ export const projects: Project[] = [
     ],
     accent: "amber",
   },
+  {
+    id: "insight-crm-ai",
+    name: "InsightCRM-AI: AI Revenue Intelligence Agent",
+    context:
+      "An AI-powered revenue intelligence platform built on Dynamics 365 CE and Dataverse. A Copilot Studio agent answers questions over CRM data, and Azure OpenAI handles analysis and scoring.",
+    teamSize: 1,
+    environment: ["Dynamics 365 CE", "Dataverse", "Copilot Studio", "Azure OpenAI"],
+    technology: ["Copilot Studio", "Azure OpenAI", "Dynamics 365 CE", "Dataverse", "Azure Service Bus", "C#", "MCP"],
+    responsibilities: [
+      "Built event-driven lead scoring: a C# plugin sends new and updated leads as JSON to an Azure Service Bus topic for AI scoring",
+      "Built document-to-opportunity extraction: uploaded documents are parsed and turned into opportunity records automatically",
+      "Set up a Dataverse MCP proxy so the agent can securely read and act on CRM data",
+      "Built the Copilot Studio agent as the conversational layer on top of the data",
+    ],
+    accent: "violet",
+  },
 ];
 
 export type SkillCategory = { title: string; items: string[] };
