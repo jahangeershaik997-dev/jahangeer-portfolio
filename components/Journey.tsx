@@ -1,17 +1,19 @@
-import { profile, projects } from "@/lib/content";
+import { experience, profile, projectCountWord, projects } from "@/lib/content";
+
+const starlite = experience.find((r) => r.id === "starlite")!;
 import Reveal from "./ui/Reveal";
 import SectionHeading from "./ui/SectionHeading";
 
 const steps = [
   {
     marker: "2019",
-    title: `Joined ${profile.company}`,
-    body: `${profile.role}, ${profile.location.replace(", India", "")}. Started February 2019, working on Microsoft Dynamics CRM and Dynamics 365 customization, plugins, workflows and JavaScript.`,
+    title: `Joined ${starlite.company}`,
+    body: `${starlite.role}, ${starlite.location} (${starlite.period}). Worked on Microsoft Dynamics CRM and Dynamics 365 customization, plugins, workflows and JavaScript.`,
   },
   {
     marker: "Enterprise delivery",
-    title: "Four enterprise CRM implementations",
-    body: `${projects.map((p) => p.name).join(" · ")}. Delivered across Dynamics CRM 2016 and Dynamics 365 Cloud environments as part of teams of 8 to 10.`,
+    title: `${projectCountWord} CRM and Power Platform implementations`,
+    body: `${projects.map((p) => p.name).join(" · ")}. Delivered across Dynamics CRM 2016, Dynamics 365 Cloud, Dataverse and Power Platform.`,
   },
   {
     marker: "Platform breadth",
@@ -20,8 +22,8 @@ const steps = [
   },
   {
     marker: "Present",
-    title: "Senior developer with 7+ years in Dynamics CRM/D365",
-    body: "Enterprise CRM architecture, integrations with Azure Functions and Power Automate, Azure DevOps CI/CD, production support and mentoring developers in Agile/Scrum teams.",
+    title: `${profile.role} at ${profile.company}`,
+    body: "Since October 2026, enhancing Dynamics 365 Sales for a European IT distributor (contract via Careerwise UK): C# Dataverse plugins, JavaScript web resources and Azure DevOps sprint delivery, building on 7+ years in Dynamics CRM/D365.",
   },
 ];
 

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { projects, type Accent, type Project } from "@/lib/content";
+import { projectCountWord, projects, type Accent, type Project } from "@/lib/content";
 import Reveal from "./ui/Reveal";
 import SectionHeading from "./ui/SectionHeading";
 import { CheckIcon, ChevronIcon } from "./ui/Icons";
@@ -25,10 +25,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <div className={`h-1 ${a.bar}`} aria-hidden="true" />
         <div className="flex flex-1 flex-col p-6 md:p-7">
           <div className="flex items-start justify-between gap-4">
-            <span className="font-mono text-xs font-medium text-faint">0{index + 1}</span>
-            <span className={`rounded-full px-2.5 py-1 text-[0.7rem] font-semibold ${a.badge}`}>
-              Team of {project.teamSize}
-            </span>
+            <span className="font-mono text-xs font-medium text-faint">{String(index + 1).padStart(2, "0")}</span>
+            {project.teamSize !== undefined && (
+              <span className={`rounded-full px-2.5 py-1 text-[0.7rem] font-semibold ${a.badge}`}>
+                Team of {project.teamSize}
+              </span>
+            )}
           </div>
 
           <h3 className="mt-3 text-lg font-bold tracking-[-0.01em] text-ink md:text-xl">{project.name}</h3>
@@ -57,6 +59,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </div>
           </dl>
 
+          {project.responsibilities.length > 0 && (
           <div className="mt-auto pt-5">
             <button
               type="button"
@@ -92,6 +95,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               )}
             </AnimatePresence>
           </div>
+          )}
         </div>
       </article>
     </Reveal>
@@ -106,7 +110,7 @@ export default function Projects() {
           id="projects-title"
           eyebrow="Projects"
           title="Enterprise CRM project case studies"
-          description="Four Dynamics CRM and Dynamics 365 implementations delivered as part of enterprise teams, covering customization, plugins, integrations, reporting and deployment."
+          description={`${projectCountWord} Dynamics 365, Dataverse and Power Platform implementations, covering customization, plugins, integrations, low-code apps, AI, reporting and deployment.`}
         />
         <div className="grid gap-6 lg:grid-cols-2">
           {projects.map((p, i) => (
