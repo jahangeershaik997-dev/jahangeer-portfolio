@@ -66,7 +66,7 @@ export default function Hero() {
             <div>
               <dt className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-faint">Currently</dt>
               <dd className="mt-1 font-medium text-ink">
-                {profile.role} · {profile.company}
+                {profile.role} at {profile.company}
               </dd>
             </div>
             <div>

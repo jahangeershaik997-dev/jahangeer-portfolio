@@ -1,4 +1,4 @@
-export const RESUME_PATH = "/Shaik-Jahangeer-Resume.docx";
+export const RESUME_PATH = "/Shaik_Jahangeer_D365_CE_Dataverse_Resume.pdf";
 export const GITHUB_URL = "https://github.com/jahangeershaik997-dev/jahangeer-portfolio";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/jahangeer-shaik-3537422b4";
 export const EMAIL = "jahangeershaik997@gmail.com";
@@ -11,9 +11,9 @@ export const profile = {
   tagline:
     "7+ years of experience building, customizing and integrating enterprise Microsoft Dynamics 365 CRM solutions across cloud and on-premise environments.",
   location: "Hyderabad, India",
-  company: "Starlite Infotech Limited",
-  role: "MS Dynamics CRM Senior Developer",
-  period: "Feb 2019 – Present",
+  company: "Infinigate",
+  role: "Dynamics 365 CRM Developer",
+  period: "Oct 2026 – Present",
   startYear: "2019",
 };
 
@@ -38,29 +38,82 @@ export const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-export const experienceHighlights = [
-  "Design and build enterprise-scale Dynamics 365 CE customizations: entities, forms, views, relationships and security roles.",
-  "Develop synchronous and asynchronous C#.NET plugins, custom workflows and JavaScript form logic with Business Rules.",
-  "Deliver integrations through WebAPI, OData, Azure Functions and Power Automate, including API and data-processing work.",
-  "Own solution management and deployments across environments with Azure DevOps, Power Platform Build Tools and Git-based CI/CD.",
-  "Provide production support, troubleshooting and issue resolution, and mentor developers in an Agile/Scrum setting.",
-];
+export type Role = {
+  id: string;
+  role: string;
+  company: string;
+  engagement?: string;
+  period: string;
+  location: string;
+  current: boolean;
+  highlights: string[];
+  badges: string[];
+  /** Ids of entries in `projects` delivered in this role. */
+  projectIds?: string[];
+};
 
-export const experienceBadges = [
-  "Dynamics 365 CE",
-  "D365 On-Premise 9.1",
-  "D365 Online",
-  "C#.NET",
-  "JavaScript",
-  "Plugins",
-  "Workflows",
-  "BPF",
-  "WebAPI / OData",
-  "Azure Functions",
-  "Power Automate",
-  "SSRS",
-  "Azure DevOps",
-  "CI/CD",
+/** Newest first. */
+export const experience: Role[] = [
+  {
+    id: "infinigate",
+    role: "Dynamics 365 CRM Developer",
+    company: "Infinigate",
+    engagement: "Contract via Careerwise UK",
+    period: "Oct 2026 – Present",
+    location: "Remote · UK/European hours",
+    current: true,
+    highlights: [
+      "Develop and enhance the Dynamics 365 Sales application (leads, accounts, opportunities, quotes) for a European IT distribution business, delivering Azure DevOps user stories in sprints.",
+      "Build and modify C# plugins on the Dataverse SDK, registered and debugged with the Plugin Registration Tool and Plugin Trace Log.",
+      "Implement JavaScript web resources (form events, field validation, Xrm.WebApi) and maintain model-driven forms, views and business rules.",
+      "Own each story end to end: development, testing with documented evidence, and peer code review before promotion through Dev/Test/Prod.",
+      "Work directly with UK and European stakeholders on requirements, demos and UAT.",
+    ],
+    badges: [
+      "Dynamics 365 Sales",
+      "Dataverse SDK",
+      "C# Plugins",
+      "Plugin Registration Tool",
+      "Plugin Trace Log",
+      "JavaScript Web Resources",
+      "Xrm.WebApi",
+      "Model-driven Apps",
+      "Business Rules",
+      "Azure DevOps",
+    ],
+  },
+  {
+    id: "starlite",
+    role: "MS Dynamics CRM Senior Developer",
+    company: "Starlite Infotech Limited",
+    period: "Feb 2019 – Dec 2025",
+    location: "Hyderabad",
+    current: false,
+    highlights: [
+      "Design and build enterprise-scale Dynamics 365 CE customizations: entities, forms, views, relationships and security roles.",
+      "Develop synchronous and asynchronous C#.NET plugins, custom workflows and JavaScript form logic with Business Rules.",
+      "Deliver integrations through WebAPI, OData, Azure Functions and Power Automate, including API and data-processing work.",
+      "Own solution management and deployments across environments with Azure DevOps, Power Platform Build Tools and Git-based CI/CD.",
+      "Provide production support, troubleshooting and issue resolution, and mentor developers in an Agile/Scrum setting.",
+    ],
+    badges: [
+      "Dynamics 365 CE",
+      "D365 On-Premise 9.1",
+      "D365 Online",
+      "C#.NET",
+      "JavaScript",
+      "Plugins",
+      "Workflows",
+      "BPF",
+      "WebAPI / OData",
+      "Azure Functions",
+      "Power Automate",
+      "SSRS",
+      "Azure DevOps",
+      "CI/CD",
+    ],
+    projectIds: ["msci", "hw", "unilever", "sis", "insight-crm-ai"],
+  },
 ];
 
 export type Accent = "azure" | "teal" | "violet" | "amber";
@@ -69,7 +122,7 @@ export type Project = {
   id: string;
   name: string;
   context: string;
-  teamSize: number;
+  teamSize?: number;
   environment: string[];
   technology: string[];
   responsibilities: string[];
@@ -197,12 +250,39 @@ export const skillCategories: SkillCategory[] = [
     items: ["C#.NET", "JavaScript", "XML", "HTML", "CSS", ".NET Framework 4.0/4.2", ".NET Core"],
   },
   {
-    title: "Integration",
-    items: ["WebAPI", "OData", "API Integrations", "System Integrations", "Data Processing"],
+    title: "Dataverse Security",
+    items: ["Business Units", "Teams", "Field-Level Security"],
   },
   {
-    title: "Azure / Power Platform",
-    items: ["Azure Functions", "Power Automate", "Power Apps Portal", "Dynamics 365 Portals"],
+    title: "Integration",
+    items: [
+      "WebAPI",
+      "OData",
+      "API Integrations",
+      "System Integrations",
+      "Data Processing",
+      "Azure Functions",
+      "Logic Apps",
+      "Azure Service Bus",
+      "Azure Storage Queues",
+    ],
+  },
+  {
+    title: "Power Platform",
+    items: [
+      "Canvas Apps (Power Fx, components, delegation)",
+      "Model-driven Apps",
+      "Dataverse",
+      "Power Pages",
+      "Copilot Studio",
+      "Power Automate",
+      "Power Apps Portal",
+      "Dynamics 365 Portals",
+    ],
+  },
+  {
+    title: "AI",
+    items: ["Copilot Studio", "Azure OpenAI"],
   },
   {
     title: "Database / Reporting",
@@ -233,3 +313,8 @@ export const education = {
   degree: "B.Com General",
   institution: "Siddhartha Degree and PG College",
 };
+
+const NUMBER_WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
+
+/** Capitalised word for the number of projects (e.g. "Six"), so counts never go stale. */
+export const projectCountWord = NUMBER_WORDS[projects.length] ?? String(projects.length);
